@@ -8,4 +8,4 @@ coverage/
 .vercel/
 .env*
 !.env.example
-data/
+/data/

@@ -1,0 +1,580 @@
+import {
+  ClosingSlateConfig,
+  GiveawayState,
+  GuestBadgeItem,
+  ShowTemplate,
+  SponsorBanner,
+  TvTitlePreset,
+} from '../types/broadcast';
+
+export const WHATSAPP_NUMBER = '5493757300369';
+export const WHATSAPP_DISPLAY = '+54 9 3757 30-0369';
+
+export const OFFICIAL_PRODUCER_LOGO = '/assets/aistudio/jz-logo-transparent.png';
+export const OFFICIAL_SINFILTRO_LOGO =
+  '/assets/aistudio/sin-filtro-logoo2_2e0a15d3.png';
+
+export function getProducerWhatsAppUrl(
+  topic?: string,
+  phoneNumber: string = WHATSAPP_NUMBER
+): string {
+  const digits = (phoneNumber || WHATSAPP_NUMBER).replace(/\D/g, '') || WHATSAPP_NUMBER;
+  const text = topic
+    ? `Hola! Me comunico con la productora JUGEND FÜR EINE GRÜNE ZUKUNFT por: ${topic}`
+    : 'Hola! Me comunico con la productora JUGEND FÜR EINE GRÜNE ZUKUNFT.';
+  return `https://wa.me/${digits}?text=${encodeURIComponent(text)}`;
+}
+
+export function getSponsorWhatsAppUrl(
+  slotNum: number,
+  phoneNumber: string = WHATSAPP_NUMBER,
+  programTitle?: string
+): string {
+  const digits = (phoneNumber || WHATSAPP_NUMBER).replace(/\D/g, '') || WHATSAPP_NUMBER;
+  const target = programTitle ? ` en ${programTitle}` : '';
+  const text = `Hola! Quiero consultar por el espacio publicitario BANNER ${slotNum}${target} en JUGEND FÜR EINE GRÜNE ZUKUNFT.`;
+  return `https://wa.me/${digits}?text=${encodeURIComponent(text)}`;
+}
+
+export const DEFAULT_CLOSING_SLATE: ClosingSlateConfig = {
+  active: false,
+  headline: 'GRACIAS POR ACOMPAÑARNOS',
+  programTitle: '#SinFiltro',
+  programLogoUrl: OFFICIAL_SINFILTRO_LOGO,
+  radioName: 'Radioactiva 88.5 FM',
+  radioLogoUrl: '',
+  producerName: 'JUGEND FÜR EINE GRÜNE ZUKUNFT',
+  producerLogoUrl: OFFICIAL_PRODUCER_LOGO,
+  ownerCredit: 'Dueño y Creador: ALMADA EDUARDO THOMAS',
+  credits: [
+    {
+      area: 'Dirección General y Creación',
+      names: 'ALMADA EDUARDO THOMAS',
+    },
+    {
+      area: 'Producción General',
+      names: 'ALMADA EDUARDO THOMAS',
+    },
+    {
+      area: 'Conducción',
+      names: 'Equipo de Conducción JZ',
+    },
+    {
+      area: 'Operación Técnica y Transmisión',
+      names: 'MesaControl TV · JZ',
+    },
+    {
+      area: 'Gráfica y Redes',
+      names: 'Equipo Digital JZ',
+    },
+  ],
+};
+
+export const DEFAULT_SPONSOR_BANNERS: SponsorBanner[] = [
+  {
+    id: 'sponsor-1',
+    slotLabel: 'BANNER 1',
+    name: 'Auspiciante 1',
+    message: 'Espacio reservado para comercio o anunciante local.',
+    badgeText: 'Espacio publicitario disponible',
+    ctaText: 'Pedir espacio por WhatsApp',
+    isOccupied: false,
+  },
+  {
+    id: 'sponsor-2',
+    slotLabel: 'BANNER 2',
+    name: 'Auspiciante 2',
+    message: 'Espacio reservado para comercio o anunciante local.',
+    badgeText: 'Espacio publicitario disponible',
+    ctaText: 'Pedir espacio por WhatsApp',
+    isOccupied: false,
+  },
+  {
+    id: 'sponsor-3',
+    slotLabel: 'BANNER 3',
+    name: 'Auspiciante 3',
+    message: 'Espacio reservado para comercio o anunciante local.',
+    badgeText: 'Espacio publicitario disponible',
+    ctaText: 'Pedir espacio por WhatsApp',
+    isOccupied: false,
+  },
+];
+
+export const DEFAULT_TV_TITLES: TvTitlePreset[] = [
+  {
+    id: 'tit-vivo',
+    tag: 'EN VIVO · RADIOACTIVA 88.5',
+    title: '#SinFiltro · Sábados de 17:00 a 19:00',
+    subtitle: 'Actualidad, debate joven y participación directa desde Puerto Esperanza',
+    style: 'lower_third',
+  },
+  {
+    id: 'tit-tema',
+    tag: 'TEMA DEL DÍA',
+    title: 'Agenda Comunitaria y Juventud en Misiones',
+    subtitle: 'Escribí tu opinión en el chat en vivo para salir al aire',
+    style: 'headline_banner',
+  },
+  {
+    id: 'tit-invitado',
+    tag: 'ENTREVISTA EXCLUSIVA',
+    title: 'Voces que impulsan proyectos locales',
+    subtitle: 'Conversación en directo por JUGEND FÜR EINE GRÜNE ZUKUNFT',
+    style: 'lower_third',
+  },
+  {
+    id: 'tit-auspicio',
+    tag: 'ESPACIO COMERCIAL',
+    title: 'Sumá tu marca o comercio a nuestra programación',
+    subtitle: 'Banners en pantalla y menciones en vivo · WhatsApp disponible',
+    style: 'full_title',
+  },
+];
+
+export const DEFAULT_GUEST_BADGES: GuestBadgeItem[] = [
+  {
+    id: 'guest-1',
+    greeting: '¡BIENVENIDO/A AL PROGRAMA!',
+    name: 'Almada Eduardo Thomas',
+    role: 'Dueño y Creador · JUGEND FÜR EINE GRÜNE ZUKUNFT',
+  },
+  {
+    id: 'guest-2',
+    greeting: 'INVITADO ESPECIAL EN VIVO',
+    name: 'Referente Local',
+    role: 'Cultura, Ambiente y Comunidad · Puerto Esperanza',
+  },
+];
+
+export const DEFAULT_GIVEAWAY_STATE: GiveawayState = {
+  stage: 'hidden',
+  title: 'SORTEO EN VIVO · #SINFILTRO',
+  prize: 'Premio Especial de la Emisión',
+  promptText: 'Participá comentando con tu nombre y barrio en el chat en vivo',
+  participants: ['Lucía Benítez', 'Mateo Acosta', 'Sofía Giménez', 'Tomás Paredes'],
+  rollingName: '',
+  winnerName: '',
+  winnerNote: 'Retirá tu premio coordinando por WhatsApp con producción',
+};
+
+export const TV_SHOW_TEMPLATES: ShowTemplate[] = [
+  {
+    id: 'sin-filtro',
+    name: '#SinFiltro',
+    formatLabel: 'TV en Vivo + Radio Visual · Sábados 17:00 a 19:00',
+    description:
+      'Programa insignia de debate actual, agenda de Puerto Esperanza, invitados en vivo, música y sorteos por Radioactiva 88.5 FM.',
+    accentHex: '#16A34A',
+    logoUrl: OFFICIAL_SINFILTRO_LOGO,
+    previewImageUrl: '/src/assets/images/program_sinfiltro_desk_1795376283057.jpg',
+    scenes: [
+      {
+        id: 'sf-estudio',
+        name: 'Cámara General',
+        obsSceneName: '#SinFiltro - Cam 1',
+        cameraLabel: 'CAM 1 · GENERAL',
+        backdropUrl: '/src/assets/images/program_sinfiltro_desk_1795376283057.jpg',
+        cameraType: 'studio',
+        layoutMode: 'full',
+        description: 'Plano general de conducción en vivo de #SinFiltro.',
+      },
+      {
+        id: 'sf-invitados',
+        name: 'Entrevista en Vivo',
+        obsSceneName: '#SinFiltro - Cam 2 Invitados',
+        cameraLabel: 'CAM 2 · INVITADOS',
+        backdropUrl: '/src/assets/images/studio_talk_show_1795296510184.jpg',
+        cameraType: 'studio',
+        layoutMode: 'pip',
+        description: 'Plano doble para invitados y mesa de debate.',
+      },
+      {
+        id: 'sf-pantalla',
+        name: 'Material y Pantalla',
+        obsSceneName: '#SinFiltro - Pantalla',
+        cameraLabel: 'PC · PANTALLA',
+        backdropUrl: '/src/assets/images/service_control_room_1795376283734.jpg',
+        cameraType: 'screen',
+        layoutMode: 'split',
+        description: 'Presentación de videos, redes y consignas en pantalla.',
+      },
+      {
+        id: 'sf-pausa',
+        name: 'Placa de Pausa',
+        obsSceneName: '#SinFiltro - Pausa',
+        cameraLabel: 'PLACA · PAUSA',
+        backdropUrl: '/src/assets/images/hero_production_set_1795376282591.jpg',
+        cameraType: 'slate',
+        layoutMode: 'full',
+        slateColor: '#064E3B',
+        slateHeadline: '#SinFiltro',
+        description: 'YA VOLVEMOS',
+      },
+    ],
+    defaultOverlays: {
+      showLowerThird: true,
+      lowerThirdTitle: '#SinFiltro en Vivo',
+      lowerThirdSubtitle: 'Sábados de 17:00 a 19:00 · Radioactiva 88.5 Puerto Esperanza',
+      showTicker: true,
+      tickerText:
+        'ESTÁS VIENDO #SinFiltro EN VIVO · Radioactiva 88.5 Puerto Esperanza · Participá con tu comentario',
+      showBug: true,
+      channelName: '#SinFiltro',
+      logoUrl: OFFICIAL_SINFILTRO_LOGO,
+      showClock: true,
+      showLiveBadge: true,
+      showScoreboard: false,
+      scoreHomeName: 'LOC',
+      scoreHome: 0,
+      scoreAwayName: 'VIS',
+      scoreAway: 0,
+      matchClock: '00:00',
+      activeBannerTitle: null,
+      activeGuestBadge: null,
+      giveaway: null,
+      closingSlate: {
+        ...DEFAULT_CLOSING_SLATE,
+        active: false,
+        programTitle: '#SinFiltro',
+        programLogoUrl: OFFICIAL_SINFILTRO_LOGO,
+      },
+      fadeToBlack: false,
+    },
+    touchPads: [
+      {
+        id: 'pad-cam1',
+        label: 'CAM 1 GENERAL',
+        sublabel: 'Plano principal',
+        color: 'emerald',
+        actionType: 'scene',
+        targetValue: 'sf-estudio',
+        category: 'escenas',
+      },
+      {
+        id: 'pad-cam2',
+        label: 'ENTREVISTA',
+        sublabel: 'Invitados PIP',
+        color: 'blue',
+        actionType: 'scene',
+        targetValue: 'sf-invitados',
+        category: 'escenas',
+      },
+      {
+        id: 'pad-pausa',
+        label: 'YA VOLVEMOS',
+        sublabel: 'Placa pausa',
+        color: 'amber',
+        actionType: 'scene',
+        targetValue: 'sf-pausa',
+        category: 'escenas',
+      },
+      {
+        id: 'pad-zocalo',
+        label: 'ZÓCALO TV',
+        sublabel: 'Mostrar / Ocultar',
+        color: 'slate',
+        actionType: 'overlay',
+        targetValue: 'toggle_lower_third',
+        category: 'graficas',
+      },
+      {
+        id: 'pad-ticker',
+        label: 'CINTA INFERIOR',
+        sublabel: 'Ticker en vivo',
+        color: 'slate',
+        actionType: 'overlay',
+        targetValue: 'toggle_ticker',
+        category: 'graficas',
+      },
+      {
+        id: 'pad-cortina',
+        label: 'CORTINA TV',
+        sublabel: 'Impacto ingreso',
+        color: 'crimson',
+        actionType: 'audio_stinger',
+        targetValue: 'cortina_ingreso',
+        category: 'macros',
+      },
+    ],
+    rundown: [
+      {
+        id: 'sf-run-1',
+        title: 'Apertura e Identidad',
+        sceneId: 'sf-estudio',
+        durationSec: 300,
+        transitionType: 'fade',
+        autoLowerThird: true,
+        lowerThirdTitle: '#SinFiltro · Apertura',
+        lowerThirdSubtitle: 'Bienvenidos por Radioactiva 88.5 FM y Streaming HD',
+      },
+      {
+        id: 'sf-run-2',
+        title: 'Entrevista Central',
+        sceneId: 'sf-invitados',
+        durationSec: 900,
+        transitionType: 'wipe',
+        autoLowerThird: true,
+        lowerThirdTitle: 'Entrevista en Vivo',
+        lowerThirdSubtitle: 'Conversamos con protagonistas de nuestra comunidad',
+      },
+      {
+        id: 'sf-run-3',
+        title: 'Corte Institucional',
+        sceneId: 'sf-pausa',
+        durationSec: 180,
+        transitionType: 'fade',
+        autoLowerThird: false,
+      },
+    ],
+    audioChannels: [
+      {
+        id: 'mic-1',
+        name: 'Mic 1 · Conducción',
+        obsInputName: 'Micrófono Principal',
+        volumeDb: -3,
+        muted: false,
+        levelDb: -18,
+      },
+      {
+        id: 'mic-2',
+        name: 'Mic 2 · Invitado',
+        obsInputName: 'Micrófono Invitado',
+        volumeDb: -6,
+        muted: false,
+        levelDb: -24,
+      },
+      {
+        id: 'music-bed',
+        name: 'Música / Cortinas',
+        obsInputName: 'Audio Desktop / Música',
+        volumeDb: -14,
+        muted: false,
+        levelDb: -28,
+      },
+    ],
+  },
+  {
+    id: 'cronicas-selva',
+    name: 'Crónicas de Selva y Juventud',
+    formatLabel: 'Serie Documental Territorial',
+    description:
+      'Retratos cinematográficos sobre iniciativas ambientales, cultura joven y oficios sustentables en Misiones.',
+    accentHex: '#10B981',
+    logoUrl: OFFICIAL_PRODUCER_LOGO,
+    previewImageUrl: '/src/assets/images/service_cinema_rig_1795376283166.jpg',
+    scenes: [
+      {
+        id: 'cs-cam1',
+        name: 'Cámara Documental',
+        obsSceneName: 'Crónicas - Cam 1',
+        cameraLabel: 'CAM 1 · DOCUMENTAL',
+        backdropUrl: '/src/assets/images/service_cinema_rig_1795376283166.jpg',
+        cameraType: 'studio',
+        layoutMode: 'full',
+        description: 'Plano cinematográfico principal de Crónicas de Selva y Juventud.',
+      },
+      {
+        id: 'cs-pausa',
+        name: 'Placa de Pausa',
+        obsSceneName: 'Crónicas - Pausa',
+        cameraLabel: 'PLACA · PAUSA',
+        backdropUrl: '/src/assets/images/hero_production_set_1795376282591.jpg',
+        cameraType: 'slate',
+        layoutMode: 'full',
+        slateColor: '#064E3B',
+        slateHeadline: 'Crónicas de Selva y Juventud',
+        description: 'YA VOLVEMOS',
+      },
+    ],
+    defaultOverlays: {
+      showLowerThird: true,
+      lowerThirdTitle: 'Crónicas de Selva y Juventud',
+      lowerThirdSubtitle: 'Serie Documental Territorial · JUGEND FÜR EINE GRÜNE ZUKUNFT',
+      showTicker: true,
+      tickerText:
+        'CRÓNICAS DE SELVA Y JUVENTUD · Producción original de JUGEND FÜR EINE GRÜNE ZUKUNFT',
+      showBug: true,
+      channelName: 'Crónicas de Selva',
+      logoUrl: OFFICIAL_PRODUCER_LOGO,
+      showClock: true,
+      showLiveBadge: true,
+      showScoreboard: false,
+      scoreHomeName: 'LOC',
+      scoreHome: 0,
+      scoreAwayName: 'VIS',
+      scoreAway: 0,
+      matchClock: '00:00',
+      activeBannerTitle: null,
+      activeGuestBadge: null,
+      giveaway: null,
+      closingSlate: {
+        ...DEFAULT_CLOSING_SLATE,
+        active: false,
+        programTitle: 'Crónicas de Selva y Juventud',
+        programLogoUrl: OFFICIAL_PRODUCER_LOGO,
+      },
+      fadeToBlack: false,
+    },
+    touchPads: [],
+    rundown: [],
+    audioChannels: [
+      {
+        id: 'cs-mic-1',
+        name: 'Narración / Campo',
+        obsInputName: 'Micrófono Campo',
+        volumeDb: -3,
+        muted: false,
+        levelDb: -20,
+      },
+    ],
+  },
+  {
+    id: 'sesiones-verdes',
+    name: 'Sesiones Verdes 88.5',
+    formatLabel: 'Ciclo Musical y Entrevistas',
+    description:
+      'Bandas, solistas y artistas emergentes interpretando sets acústicos en locaciones especiales.',
+    accentHex: '#059669',
+    logoUrl: OFFICIAL_PRODUCER_LOGO,
+    previewImageUrl: '/src/assets/images/studio_podcast_desk_1795296509941.jpg',
+    scenes: [
+      {
+        id: 'sv-cam1',
+        name: 'Escenario Acústico',
+        obsSceneName: 'Sesiones Verdes - Cam 1',
+        cameraLabel: 'CAM 1 · ACÚSTICO',
+        backdropUrl: '/src/assets/images/studio_podcast_desk_1795296509941.jpg',
+        cameraType: 'studio',
+        layoutMode: 'full',
+        description: 'Plano general del set acústico en locación.',
+      },
+      {
+        id: 'sv-pausa',
+        name: 'Placa de Pausa',
+        obsSceneName: 'Sesiones Verdes - Pausa',
+        cameraLabel: 'PLACA · PAUSA',
+        backdropUrl: '/src/assets/images/hero_production_set_1795376282591.jpg',
+        cameraType: 'slate',
+        layoutMode: 'full',
+        slateColor: '#064E3B',
+        slateHeadline: 'Sesiones Verdes 88.5',
+        description: 'YA VOLVEMOS',
+      },
+    ],
+    defaultOverlays: {
+      showLowerThird: true,
+      lowerThirdTitle: 'Sesiones Verdes 88.5',
+      lowerThirdSubtitle: 'Ciclo Musical y Entrevistas · Radioactiva 88.5 FM',
+      showTicker: true,
+      tickerText: 'SESIONES VERDES 88.5 · Música regional en vivo y entrevistas',
+      showBug: true,
+      channelName: 'Sesiones Verdes',
+      logoUrl: OFFICIAL_PRODUCER_LOGO,
+      showClock: true,
+      showLiveBadge: true,
+      showScoreboard: false,
+      scoreHomeName: 'LOC',
+      scoreHome: 0,
+      scoreAwayName: 'VIS',
+      scoreAway: 0,
+      matchClock: '00:00',
+      activeBannerTitle: null,
+      activeGuestBadge: null,
+      giveaway: null,
+      closingSlate: {
+        ...DEFAULT_CLOSING_SLATE,
+        active: false,
+        programTitle: 'Sesiones Verdes 88.5',
+        programLogoUrl: OFFICIAL_PRODUCER_LOGO,
+      },
+      fadeToBlack: false,
+    },
+    touchPads: [],
+    rundown: [],
+    audioChannels: [
+      {
+        id: 'sv-mic-1',
+        name: 'Voz y Acústica',
+        obsInputName: 'Master Música',
+        volumeDb: -2,
+        muted: false,
+        levelDb: -16,
+      },
+    ],
+  },
+  {
+    id: 'mesa-abierta',
+    name: 'Mesa Abierta: Agenda Comunitaria',
+    formatLabel: 'Foro Televisivo Participativo',
+    description:
+      'Encuentros temáticos en vivo con estudiantes, docentes y referentes locales.',
+    accentHex: '#15803D',
+    logoUrl: OFFICIAL_PRODUCER_LOGO,
+    previewImageUrl: '/src/assets/images/studio_talk_show_1795296510184.jpg',
+    scenes: [
+      {
+        id: 'ma-cam1',
+        name: 'Mesa General',
+        obsSceneName: 'Mesa Abierta - Cam 1',
+        cameraLabel: 'CAM 1 · MESA',
+        backdropUrl: '/src/assets/images/studio_talk_show_1795296510184.jpg',
+        cameraType: 'studio',
+        layoutMode: 'full',
+        description: 'Plano de debate participativo.',
+      },
+      {
+        id: 'ma-pausa',
+        name: 'Placa de Pausa',
+        obsSceneName: 'Mesa Abierta - Pausa',
+        cameraLabel: 'PLACA · PAUSA',
+        backdropUrl: '/src/assets/images/hero_production_set_1795376282591.jpg',
+        cameraType: 'slate',
+        layoutMode: 'full',
+        slateColor: '#064E3B',
+        slateHeadline: 'Mesa Abierta: Agenda Comunitaria',
+        description: 'YA VOLVEMOS',
+      },
+    ],
+    defaultOverlays: {
+      showLowerThird: true,
+      lowerThirdTitle: 'Mesa Abierta: Agenda Comunitaria',
+      lowerThirdSubtitle: 'Último jueves de cada mes · En vivo',
+      showTicker: true,
+      tickerText:
+        'MESA ABIERTA · Participación ciudadana y proyectos ambientales de Puerto Esperanza',
+      showBug: true,
+      channelName: 'Mesa Abierta',
+      logoUrl: OFFICIAL_PRODUCER_LOGO,
+      showClock: true,
+      showLiveBadge: true,
+      showScoreboard: false,
+      scoreHomeName: 'LOC',
+      scoreHome: 0,
+      scoreAwayName: 'VIS',
+      scoreAway: 0,
+      matchClock: '00:00',
+      activeBannerTitle: null,
+      activeGuestBadge: null,
+      giveaway: null,
+      closingSlate: {
+        ...DEFAULT_CLOSING_SLATE,
+        active: false,
+        programTitle: 'Mesa Abierta: Agenda Comunitaria',
+        programLogoUrl: OFFICIAL_PRODUCER_LOGO,
+      },
+      fadeToBlack: false,
+    },
+    touchPads: [],
+    rundown: [],
+    audioChannels: [
+      {
+        id: 'ma-mic-1',
+        name: 'Moderación',
+        obsInputName: 'Micrófono Moderador',
+        volumeDb: -3,
+        muted: false,
+        levelDb: -18,
+      },
+    ],
+  },
+];
